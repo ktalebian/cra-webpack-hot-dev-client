@@ -1,7 +1,13 @@
 import url from 'url';
 
 import stripAnsi from 'strip-ansi';
-import ErrorOverlay from 'react-error-overlay';
+import {
+  setEditorHandler,
+  startReportingRuntimeErrors,
+  stopReportingRuntimeErrors,
+  reportBuildError,
+  dismissBuildError,
+} from 'react-error-overlay';
 import formatWebpackMessages from '@k88/format-webpack-messages';
 
 interface ErrorLocation {
@@ -22,7 +28,7 @@ const editorEndpoint = '/__open-stack-frame-in-editor';
 
 const encode = window.encodeURIComponent;
 
-ErrorOverlay.setEditorHandler(async (errorLocation: ErrorLocation) => {
+setEditorHandler(async (errorLocation: ErrorLocation) => {
   const line = errorLocation.lineNumber || 1;
   const col = errorLocation.colNumber || 1;
 
@@ -41,7 +47,7 @@ ErrorOverlay.setEditorHandler(async (errorLocation: ErrorLocation) => {
  * See https://github.com/facebook/create-react-app/issues/3096
  */
 let hadRuntimeError = false;
-ErrorOverlay.startReportingRuntimeErrors({
+startReportingRuntimeErrors({
   onError: () => {
     hadRuntimeError = true;
   },
@@ -52,7 +58,7 @@ ErrorOverlay.startReportingRuntimeErrors({
 if (module.hot && typeof module.hot.dispose === 'function') {
   // @ts-ignore
   module.hot.dispose(() => {
-    ErrorOverlay.stopReportingRuntimeErrors();
+    stopReportingRuntimeErrors();
   });
 }
 
@@ -167,7 +173,7 @@ function handleErrors(errors) {
   });
 
   // Only show the first error.
-  ErrorOverlay.reportBuildError(formatted.errors[0]);
+  reportBuildError(formatted.errors[0]);
 
   // Also log them to the console.
   if (typeof console !== 'undefined' && typeof console.error === 'function') {
@@ -184,7 +190,7 @@ function handleErrors(errors) {
 
 function tryDismissErrorOverlay() {
   if (!hasCompileErrors) {
-    ErrorOverlay.dismissBuildError();
+    dismissBuildError();
   }
 }
 
