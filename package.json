@@ -36,16 +36,18 @@
       "pre-commit": "npm run lint"
     }
   },
-  "devDependencies": {
+  "dependencies": {
     "@k88/format-webpack-messages": "^1.0.0",
+    "react-error-overlay": "^6.0.7",
+    "strip-ansi": "^6.0.0",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-twilio-ts": "^1.22.0",
     "husky": "^4.2.3",
-    "react-error-overlay": "^6.0.7",
-    "strip-ansi": "^6.0.0",
     "ts-node": "^8.8.1",
-    "typescript": "^3.8.3",
-    "url": "^0.11.0"
+    "typescript": "^3.8.3"
   },
   "reveal": true
 }
