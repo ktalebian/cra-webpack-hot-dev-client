@@ -1,6 +1,6 @@
 {
   "name": "@k88/cra-webpack-hot-dev-client",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "A Webpack Hot Dev Client taken from Create React App",
   "keywords": [
     "webpack",
