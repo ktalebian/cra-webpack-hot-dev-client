@@ -16,8 +16,6 @@ interface ErrorLocation {
   colNumber: number;
 }
 
-type Callback = () => void;
-
 declare const module: {
   hot?: {
     status: () => string;
@@ -92,10 +90,8 @@ let hasCompileErrors = false;
 
 const clearOutdatedErrors = () => {
   // Clean up outdated compile errors, if any.
-  if (typeof console !== 'undefined' && typeof console.clear === 'function') {
-    if (hasCompileErrors) {
-      console.clear();
-    }
+  if (typeof console !== 'undefined' && typeof console.clear === 'function' && hasCompileErrors) {
+    console.clear();
   }
 };
 

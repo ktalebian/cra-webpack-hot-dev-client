@@ -8,5 +8,6 @@
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/prefer-for-of": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }
